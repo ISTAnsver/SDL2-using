@@ -1,0 +1,2 @@
+Use CMake and MinGW:
+cmake -G "MinGW Makefiles" -D CMAKE_C_COMPILER=gcc -D CMAKE_CXX_COMPILER=g++

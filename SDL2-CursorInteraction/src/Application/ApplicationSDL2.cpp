@@ -2,7 +2,6 @@
 
 ApplicationSDL2::ApplicationSDL2()
 {
-    m_status = false;
     m_running = false;
 
     m_window = nullptr;
@@ -18,7 +17,6 @@ void ApplicationSDL2::start(int argc, char **argv)
 {
     if(SDL_Init(SDL_INIT_VIDEO) != 0)
     {
-        // TODO: [ISTAnver] set status
         return;
     }
 
@@ -28,13 +26,22 @@ void ApplicationSDL2::start(int argc, char **argv)
 
     if (m_window == nullptr)
     {
-        // TODO: [ISTAnsver] set status
         return;
     }
 
     m_screen = SDL_GetWindowSurface(m_window);
     m_running = true;
-    m_status = true;
+
+    SDL_Rect obj;
+    obj.h = 100;
+    obj.w = 100;
+    obj.x = 800 / 2 - 50;
+    obj.y = 600 / 2 - 50;
+
+    SDL_Renderer *renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED);
+    SDL_Surface *mouseCursorSurface = SDL_LoadBMP("resources/SimpleSword.bmp");
+    SDL_Cursor *defaultCursor = SDL_GetCursor();
+    SDL_Cursor *cursor = SDL_CreateColorCursor(mouseCursorSurface, 0, 0);
 
     while(m_running)
     {
@@ -49,19 +56,34 @@ void ApplicationSDL2::start(int argc, char **argv)
                         stop();
                     }
                     break;
+                case SDL_MOUSEMOTION:
+                    if(event.motion.x >= obj.x && event.motion.y >= obj.y && 
+                        event.motion.x <= obj.x + obj.w && event.motion.y <= obj.y + obj.h)
+                    {
+                        SDL_SetCursor(cursor);
+                    }
+                    else
+                    {
+                        SDL_SetCursor(defaultCursor);
+                    }
+                    break;
             }
         }
-    }
-}
 
-bool ApplicationSDL2::status()
-{
-    return m_status;
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_RenderClear(renderer);
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+        SDL_Rect rect = obj;
+        SDL_RenderDrawRect(renderer, &rect);
+        SDL_RenderPresent(renderer);
+    }
+
+    SDL_FreeCursor(cursor);
+    SDL_FreeSurface(mouseCursorSurface);
 }
 
 void ApplicationSDL2::stop()
 {
-    m_status = false;
     m_running = false;
 
     SDL_DestroyWindow(m_window);

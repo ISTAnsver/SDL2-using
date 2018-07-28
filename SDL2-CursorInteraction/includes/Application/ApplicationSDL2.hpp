@@ -12,16 +12,10 @@ class ApplicationSDL2 : public Application
 {
 
     /**
-     * @brief let to know that application running or not
+     * @brief indicates that application running or not
      * 
      */
     bool m_running;
-
-    /**
-     * @brief current status of application
-     * 
-     */
-    bool m_status;
 
     /**
      * @brief window of application
@@ -54,14 +48,6 @@ public:
      * @param argv list of arguments
      */
     void start(int argc, char **argv) override;
-
-    /**
-     * @brief Let to know current status of applicaotion
-     * 
-     * @return true when application is running
-     * @return false when application stopped
-     */
-    bool status() override;
 
     /**
      * @brief Stopping the work of application

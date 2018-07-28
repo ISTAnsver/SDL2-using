@@ -22,15 +22,6 @@ public:
      */
     virtual void start(int argc, char **argv) = 0;
 
-    // TODO: [ISTAnsver] must return status that isn't boolean
-    /**
-     * @brief Let to know current status of applicaotion
-     * 
-     * @return true when application is running
-     * @return false when application stopped
-     */
-    virtual bool status() = 0;
-
     /**
      * @brief Stopping the work of application
      * 

@@ -8,7 +8,9 @@
  * 
  */
 class Cell : public Drawable {
-    char *source;
+    char *m_source;
+    int m_width;
+    int m_length;
 public:
     /**
      * @brief Construct a new Cell object
@@ -18,6 +20,11 @@ public:
      * @param length length of a cell
      */
     Cell(char *source, int width, int length);
+
+    /**
+     * @brief Destroy the Cell object
+     * 
+     */
     ~Cell();
 
     /**
@@ -31,9 +38,23 @@ public:
      * @brief Set the size of cell
      * 
      * @param width width of the cell
-     * @param height length of the cell
+     * @param length length of the cell
      */
-    void setSize(int width, int height);
+    void setSize(int width, int length);
+
+    /**
+     * @brief Returns the width of cell
+     * 
+     * @return width of cell
+     */
+    int width() const;
+
+    /**
+     * @brief Returns the length of cell
+     * 
+     * @return length of cell
+     */
+    int length() const;
 
     /**
      * @brief Draws cell at the screen

@@ -7,8 +7,9 @@
  * @brief Represents map of the world
  * 
  */
-class Map {
-    Cell **m_cells;
+class Map : public Drawable {
+    int m_width, m_length;
+    Cell ***m_cells;
 public:
     /**
      * @brief Construct a new Map object
@@ -25,19 +26,12 @@ public:
     ~Map();
 
     /**
-     * @brief Returns 2D array of the cells
-     * 
-     * @return cells of a map
-     */
-    const Cell **const cells() const;
-
-    /**
      * @brief Set new cell value at the specified position
      * 
      * @param x position at x axis
      * @param y position at y axis
      */
-    void setCell(int x, int y, Cell *const cell);
+    void setCell(int x, int y, Cell *cell);
 
     /**
      * @brief Returns cell in specified position
@@ -46,7 +40,13 @@ public:
      * @param y position at y axis
      * @return cell in specified position
      */
-    const Cell *const cell(int x, int y) const;
+    const Cell& cell(int x, int y) const;
+
+    /**
+     * @brief Draws map at the screen
+     * 
+     */
+    void draw() const override;
 };
 
 #endif // MAP_HPP

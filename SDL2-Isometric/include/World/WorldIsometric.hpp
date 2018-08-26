@@ -8,7 +8,7 @@
  * @brief Represents world in isometric perspective
  * 
  */
-class WolrdIsometric : public World {
+class WorldIsometric : public World {
     const Map *m_map;
 public:
     /**
@@ -16,12 +16,28 @@ public:
      * 
      * @param map map of the world
      */
-    WolrdIsometric();
+    WorldIsometric();
     /**
      * @brief Destroy the Wolrd Isometric object
      * 
      */
-    ~WolrdIsometric();
+    ~WorldIsometric();
+
+    /**
+     * @brief Transforms cartesian coordinates to isometric coordinates
+     * 
+     * @param x cartesian x coordinate
+     * @param y cartesian y coordinate
+     */
+    void cartesianToIsometric(int &x, int &y) const;
+
+    /**
+     * @brief Transforms isometric coordinates to cartesian coordinates
+     * 
+     * @param x isometric x coordinate
+     * @param y isometric y coordinate
+     */
+    void isometricToCartesian(int &x, int &y) const;
 
     /**
      * @brief Draws world at the screen
@@ -34,7 +50,7 @@ public:
      * 
      * @param map map that will be load
      */
-    void loadMap(const Map *const map);
+    void loadMap(const Map *const map) override;
 };
 
 #endif

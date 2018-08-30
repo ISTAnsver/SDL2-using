@@ -9,7 +9,7 @@
  * 
  */
 class WorldIsometric : public World {
-    const Map *m_map;
+    Map *m_map;
 public:
     /**
      * @brief Construct a new Wolrd Isometric object
@@ -24,22 +24,6 @@ public:
     ~WorldIsometric();
 
     /**
-     * @brief Transforms cartesian coordinates to isometric coordinates
-     * 
-     * @param x cartesian x coordinate
-     * @param y cartesian y coordinate
-     */
-    void cartesianToIsometric(int &x, int &y) const;
-
-    /**
-     * @brief Transforms isometric coordinates to cartesian coordinates
-     * 
-     * @param x isometric x coordinate
-     * @param y isometric y coordinate
-     */
-    void isometricToCartesian(int &x, int &y) const;
-
-    /**
      * @brief Draws world at the screen
      * 
      */
@@ -50,7 +34,7 @@ public:
      * 
      * @param map map that will be load
      */
-    void loadMap(const Map *const map) override;
+    void loadMap(Map *map) override;
 };
 
 #endif

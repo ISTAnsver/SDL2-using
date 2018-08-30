@@ -7,11 +7,12 @@
  * @brief Represents cell of a map
  * 
  */
-class Cell : public Drawable {
-    char *m_source;
-    int m_width;
-    int m_length;
+class Cell : public Drawable
+{
+    const char *m_source;
+    int m_width, m_length, m_x, m_y;
 public:
+
     /**
      * @brief Construct a new Cell object
      * 
@@ -19,20 +20,13 @@ public:
      * @param width width of a cell
      * @param length length of a cell
      */
-    Cell(char *source, int width, int length);
+    Cell(const char *source, int width, int length);
 
     /**
      * @brief Destroy the Cell object
      * 
      */
     ~Cell();
-
-    /**
-     * @brief Set the source image of cell
-     * 
-     * @param source source of an image
-     */
-    void setSource(char *source);
 
     /**
      * @brief Set the size of cell
@@ -55,6 +49,28 @@ public:
      * @return length of cell
      */
     int length() const;
+
+    /**
+     * @brief Set the position of cell
+     * 
+     * @param x position at x axis
+     * @param y position at y axis
+     */
+    void setPosition(int x, int y);
+
+    /**
+     * @brief Returns position of cell at x axis
+     * 
+     * @return position at x axis 
+     */
+    int x() const;
+
+    /**
+     * @brief Returns position of cell at y axis
+     * 
+     * @return position at y axis 
+     */
+    int y() const;
 
     /**
      * @brief Draws cell at the screen

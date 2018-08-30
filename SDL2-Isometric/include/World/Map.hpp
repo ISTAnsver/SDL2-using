@@ -26,12 +26,12 @@ public:
     ~Map();
 
     /**
-     * @brief Set new cell value at the specified position
+     * @brief Place cell to specified positioin
      * 
      * @param x position at x axis
      * @param y position at y axis
      */
-    void setCell(int x, int y, Cell *cell);
+    void placeCell(int x, int y, Cell *cell);
 
     /**
      * @brief Returns cell in specified position

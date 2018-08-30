@@ -2,6 +2,8 @@
 #define GAME_HPP
 
 #include <SDL.h>
+#include "Graphics/Drawable.hpp"
+#include "World/WorldIsometric.hpp"
 
 /**
  * @brief Represent a game
@@ -9,12 +11,15 @@
  */
 class Game
 {
-    SDL_Window *m_window;
-    SDL_Renderer *m_renderer;
-    bool m_initialized;
+    SDL_Surface *m_surface;
     bool m_running;
 
-    static Game *m_game;
+    WorldIsometric m_world;
+
+    static SDL_Renderer *m_renderer;
+    static int  m_viewportWidth, m_viewportHeight;
+
+public:
 
     /**
      * @brief Construct a new Game object
@@ -28,27 +33,10 @@ class Game
      */
     ~Game();
 
-public:
-
-    /**
-     * @brief Returns instance of game
-     * 
-     * @return instance of game
-     */
-    static Game* instance();
-
     /**
      * @brief initializes environment
      */
-    void initialize();
-
-    /**
-     * @brief Defines that environmet was initialized or not
-     * 
-     * @return true when environment initialized
-     * @return false when environment didn't initialized
-     */
-    bool initialized();
+    void initialize(SDL_Window *window, int viewportWidth, int viewportHeight);
 
     /**
      * @brief Renders all at the screen
@@ -81,7 +69,21 @@ public:
      * 
      * @return renderer if app was initialize else nullptr
      */
-    SDL_Renderer* renderer();
+    static SDL_Renderer* renderer();
+
+    /**
+     * @brief Returns viewport width
+     * 
+     * @return viewport width 
+     */
+    static int viewportWidth();
+
+    /**
+     * @brief Returns viewport height
+     * 
+     * @return viewport height 
+     */
+    static int viewportHeight();
 };
 
 #endif // GAME_HPP

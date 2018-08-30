@@ -21,7 +21,7 @@ public:
      * 
      * @param map 
      */
-    virtual void loadMap(const Map *const map) = 0; 
+    virtual void loadMap(Map *map) = 0; 
 };
 
 #endif // WORLD_HPP

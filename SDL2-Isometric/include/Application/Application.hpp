@@ -1,6 +1,8 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
+#include <SDL.h>
+
 class Application
 {
     char *m_title;
@@ -9,6 +11,9 @@ class Application
     int m_width;
     int m_height;
     bool m_fullscreen;
+    bool m_started;
+
+    SDL_Window *m_window;
 public:
 
     /**
@@ -31,11 +36,8 @@ public:
     
     /**
      * @brief Starts the application
-     * 
-     * @return true 
-     * @return false 
      */
-    bool start();
+    void start();
 };
 
 #endif // APPLICATOIN_HPP

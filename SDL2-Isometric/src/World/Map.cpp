@@ -1,4 +1,5 @@
 #include "World/Map.hpp"
+#include "Game/Game.hpp"
 
 Map::Map(int width, int length)
 {
@@ -25,8 +26,9 @@ Map::~Map()
     delete[] m_cells;    
 }
 
-void Map::setCell(int x, int y, Cell *cell)
+void Map::placeCell(int x, int y, Cell *cell)
 {
+    cell->setPosition(x, y);
     m_cells[y][x] = cell;
 }
 
@@ -37,10 +39,8 @@ const Cell& Map::cell(int x, int y) const
 
 void Map::draw() const
 {
-    for(int i = 0; i < m_length; i++) {
-        for(int j = 0; j < m_width; i++) {
+    for(int i = 0; i < m_length; i++)
+        for(int j = 0; j < m_width; j++)
             m_cells[i][j]->draw();
-        }
-    }
 }
 
